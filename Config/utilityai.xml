@@ -84,11 +84,11 @@
 			</action>
 			
 			<action name="Flee" weight="4">
-				<task class="FleeFromTarget" max_distance="10"/>
+				<task class="FleeFromTarget" max_distance="15"/>
 				
 				<consideration class="SelfHealth" flip_y="true" min="20" max="30"/>
 				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
-				<consideration class="TargetDistance" flip_y="true" min="4" max="5"/>
+				<consideration class="TargetDistance" flip_y="true" min="1" max="10"/>
 			</action>
 		</ai_package>
 		
@@ -119,6 +119,7 @@
 		</ai_package>
 		
 		<ai_package name="Human Ranged"> <!-- Ranged Attack AI -->
+		
 			<action name="MoveToEnemy" weight="2" distance="6">
 				<task class="MoveToTarget" run="false"/>
 				
@@ -131,6 +132,8 @@
 				<task class="FleeFromTarget" max_distance="10"/>
 				
 				<consideration class="TargetType" type="EntityNPC, EntityZombie"/>
+				
+				<consideration class="SelfHealth" flip_y="true" min="20" max="30"/>
 				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
 				<consideration class="TargetDistance" flip_y="true" min="1" max="6"/>
 			</action>
@@ -144,6 +147,157 @@
 				<consideration class="TargetDistance" min="1" max="5"/>
 			</action>
 		</ai_package>
+
+		
+		<ai_package name="PeasentAI"> <!-- Basic AI for all -->
+			<action name="Wander" weight="1">
+				<task class="Wander"/>
+			</action>
+			
+			<action name="MoveToWaypoint" weight="1">
+				<task class="MoveToTarget" run="false"/>
+				
+				<consideration class="TargetDistance" min="2" max="4"/>
+				<consideration class="TargetVisible" flip_y="true"/>
+			</action>
+			
+			<action name="Flee" weight="4">
+				<task class="FleeFromTarget" max_distance="15"/>
+				
+				<consideration class="SelfHealth" flip_y="true" min="20" max="30"/>
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" flip_y="true" min="1" max="10"/>
+			</action>
+		</ai_package>
+		
+		<ai_package name="RangedAI"> <!-- Ranged Attack AI -->
+			
+			<action name="MoveToEnemy" weight="2">
+				<task class="MoveToTarget" run="false"/>
+				
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" min="30" max="40"/>
+			</action>
+			
+			<action name="Flee" weight="4">
+				<task class="FleeFromTarget" max_distance="30"/>
+				
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetVisible" flip_y="false"/>
+				<consideration class="TargetDistance" flip_y="true" min="29" max="30"/>
+			</action>
+					
+			<action name="RangedAttack" weight="6">
+				<task class="AttackTargetEntity" action_index="0"/>
+				
+				<consideration class="TargetVisible" flip_y="false"/>
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" min="15" max="25"/>
+			</action>
+			
+			<action name="RangedAttack" weight="4">
+				<task class="AttackTargetEntity" action_index="0"/>
+				
+				<consideration class="TargetVisible" flip_y="false"/>
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" min="1" max="5"/>
+			</action>
+			
+		</ai_package>
+		
+		<ai_package name="MeleeAI"> <!-- Ranged Attack AI -->
+			
+			<action name="MoveToEnemy" weight="2">
+				<task class="MoveToTarget" run="false"/>
+				
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" min="29" max="30"/>
+			</action>
+			
+			<action name="MoveToEnemyRun" weight="3">
+				<task class="MoveToTarget" run="true"/>
+				
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" min="3" max="10"/>
+			</action>
+					
+			<action name="MeleeAttack" weight="6">
+				<task class="AttackTargetEntity" action_index="0"/>
+				
+				<consideration class="TargetVisible" flip_y="false"/>
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" flip_y="true" min="1" max="3"/>
+			</action>
+			
+			<action name="MeleeAttack" weight="6">
+				<task class="AttackTargetEntity" action_index="0"/>
+				
+				<consideration class="TargetVisible" flip_y="false"/>
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" flip_y="true" min="1" max="3"/>
+			</action>
+			
+			<action name="MeleeAttackBlock" weight="6">
+				<task class="AttackTargetBlock" action_index="0"/>
+				
+				<consideration class="PathBlocked"/>
+				<consideration class="TargetType" type="Block"/>
+				<consideration class="TargetDistance" flip_y="true" min="2" max="3"/>
+			</action>
+			
+		</ai_package>
+		
+		
+		<ai_package name="MeleeAITest"> <!-- Ranged Attack AI -->
+			
+			<action name="Wander" weight="1">
+				<task class="Wander"/>
+			</action>
+			
+			
+			<action name="MoveToEnemy" weight="2">
+				<task class="MoveToTarget" run="false"/>
+				
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" min="29" max="30"/>
+			</action>
+			
+			<action name="MoveToEnemyRun" weight="3">
+				<task class="MoveToTarget" run="true"/>
+				
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" min="3" max="10"/>
+			</action>
+			
+					
+			<action name="MeleeAttack" weight="6">
+				<task class="AttackTargetEntity" action_index="9"/>
+				
+				<consideration class="SelfHealth" flip_y="true" min="20" max="30"/>
+				<consideration class="TargetVisible" flip_y="false"/>
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" flip_y="true" min="1" max="3"/>
+			</action>
+			
+			<action name="MeleeAttack" weight="6">
+				<task class="AttackTargetEntity" action_index="9"/>
+				
+				<consideration class="TargetVisible" flip_y="false"/>
+				<consideration class="TargetFactionStanding" flip_y="true" max="127"/>
+				<consideration class="TargetDistance" flip_y="true" min="1" max="3"/>
+			</action>
+			
+			<action name="MeleeAttackBlock" weight="6">
+				<task class="AttackTargetBlock" action_index="9"/>
+				
+				<consideration class="PathBlocked"/>
+				<consideration class="TargetType" type="Block"/>
+				<consideration class="TargetDistance" flip_y="true" min="2" max="3"/>
+			</action>
+			
+		</ai_package>
+		
+		
 	</ai_packages>
 </utility_ai>
 
